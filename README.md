@@ -1,5 +1,5 @@
 Postcards from My Jungle
-GitHub Page:
+GitHub Page: https://jercabaneros.github.io/postcards-from-my-jungle/
 
 ## Project Description
 
