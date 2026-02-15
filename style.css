@@ -1,0 +1,259 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden; /* Prevent scrolling */
+}
+
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background: linear-gradient(135deg, #e8ded2 0%, #d4c5b3 100%);
+    color: #3a3a3a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* Grain texture overlay */
+.grain-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noise)" opacity="0.05"/></svg>');
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
+}
+
+.slideshow-wrapper {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1400px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+header h1 {
+    font-family: 'Futura', 'Trebuchet MS', sans-serif;
+    font-size: 3rem;
+    font-weight: 500; /* Futura Medium */
+    letter-spacing: 3px;
+    color: #2c2c2c;
+    text-transform: none;
+}
+
+.slideshow-main {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(15px);
+    border-radius: 0;
+    border: 3px solid #2c2c2c;
+    overflow: hidden;
+}
+
+/* Content grid - image left, text right */
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 70vh;
+    max-height: 700px;
+}
+
+/* Image section - FILLS ENTIRE LEFT SQUARE */
+.image-container {
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 0;
+    border-right: 3px solid #2c2c2c;
+    overflow: hidden;
+}
+
+#animal-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s ease;
+}
+
+#animal-image.fade {
+    opacity: 0;
+}
+
+.image-nav {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+    z-index: 10;
+}
+
+.arrow-btn {
+    background: transparent;
+    border: none;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.arrow-btn::before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    transition: all 0.3s ease;
+}
+
+/* Left arrow (triangle pointing left) */
+#prev-btn::before {
+    border-width: 15px 25px 15px 0;
+    border-color: transparent rgba(44, 44, 44, 0.8) transparent transparent;
+}
+
+#prev-btn:hover::before {
+    border-color: transparent rgba(0, 0, 0, 0.9) transparent transparent;
+}
+
+/* Right arrow (triangle pointing right) */
+#next-btn::before {
+    border-width: 15px 0 15px 25px;
+    border-color: transparent transparent transparent rgba(44, 44, 44, 0.8);
+}
+
+#next-btn:hover::before {
+    border-color: transparent transparent transparent rgba(0, 0, 0, 0.9);
+}
+
+/* Language section */
+.language-container {
+    background: #2c2c2c;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px;
+}
+
+.language-text {
+    margin-bottom: 50px;
+}
+
+.animal-phrase {
+    font-family: 'Futura', 'Trebuchet MS', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 700; /* Futura Bold */
+    line-height: 1.2;
+    letter-spacing: 1px;
+    color: #ffffff;
+}
+
+.translation-section {
+    background: #e8e8e8;
+    color: #2c2c2c;
+    padding: 30px;
+}
+
+.translation-label {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 500; /* Helvetica Medium */
+    margin-bottom: 8px;
+    text-transform: none;
+    letter-spacing: 0.5px;
+}
+
+.translation {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 1.8rem;
+    font-weight: 300; /* Helvetica Light */
+    line-height: 1.4;
+    color: #2c2c2c;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+    
+    .image-container {
+        border-right: none;
+        border-bottom: 3px solid #2c2c2c;
+    }
+    
+    .language-container {
+        padding: 40px;
+    }
+    
+    .animal-phrase {
+        font-size: 2.5rem;
+    }
+    
+    .translation {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .slideshow-wrapper {
+        padding: 20px;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .content-grid {
+        height: 80vh;
+    }
+    
+    .language-container {
+        padding: 30px;
+    }
+    
+    .animal-phrase {
+        font-size: 2rem;
+    }
+    
+    .translation {
+        font-size: 1.2rem;
+    }
+    
+    .arrow-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    #prev-btn::before {
+        border-width: 12px 20px 12px 0;
+    }
+    
+    #next-btn::before {
+        border-width: 12px 0 12px 20px;
+    }
+}

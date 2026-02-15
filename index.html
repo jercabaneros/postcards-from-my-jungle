@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postcards from My Jungle</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="grain-overlay"></div>
+    
+    <!-- Main slideshow container -->
+    <div class="slideshow-wrapper">
+        <header>
+            <h1>Jungle Postcards</h1>
+        </header>
+
+        <main class="slideshow-main">
+            <!-- Image and language side by side -->
+            <div class="content-grid">
+                <!-- Left: Image -->
+                <div class="image-container">
+                    <img id="animal-image" src="images/animal_00.png" alt="Generated Animal">
+                   <div class="image-nav">
+                        <button class="arrow-btn" id="prev-btn"></button>
+                        <button class="arrow-btn" id="next-btn"></button>
+                    </div>
+                </div>
+
+                <!-- Right: Language -->
+                <div class="language-container">
+                    <div class="language-text">
+                        <p class="animal-phrase" id="animal-phrase">Kraa-tik shreel ma'voora</p>
+                    </div>
+                    <div class="translation-section">
+                        <p class="translation-label">Translation:</p>
+                        <p class="translation" id="translation">The feeding time approaches</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Hidden audio players (autoplay) -->
+    <audio id="sound-1" loop>
+        <source src="sounds/zoo_aviary_mixed.wav" type="audio/wav">
+    </audio>
+    <audio id="sound-2" loop>
+        <source src="sounds/zoo_mammal_enclosure.wav" type="audio/wav">
+    </audio>
+    <audio id="sound-3" loop>
+        <source src="sounds/zoo_aviary_morning.wav" type="audio/wav">
+    </audio>
+    <audio id="sound-4" loop>
+        <source src="sounds/zoo_bird_activity.wav" type="audio/wav">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
